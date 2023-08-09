@@ -43,13 +43,15 @@ class User(db.Model, UserMixin):
         secondary=follows,
         primaryjoin=(follows.c.follower_id == id),
         secondaryjoin=(follows.c.following_id == id),
-        back_populates='followed'
+        foreign_keys=[follows.c.follower_id],
+        back_populates='followers'
     )
 
-    follower = db.relationship(
+    followers = db.relationship(
         'User',
         secondary=follows,
         primaryjoin=(follows.c.following_id == id),
         secondaryjoin=(follows.c.follower_id == id),
+        foreign_keys=[follows.c.following_id],
         back_populates='following'
     )
