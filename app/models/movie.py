@@ -8,8 +8,8 @@ class Movie(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(60), nullable=False, unique=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    title = db.Column(db.String(60), nullable=False, unique=True)
     art = db.Column(db.String(255), nullable=False, unique=True)
     tagline = db.Column(db.String(100), nullable=False, unique=True)
     summary = db.Column(db.Text, nullable=False, unique=True)
@@ -25,7 +25,7 @@ class Movie(db.Model):
 
     user = db.relationship('User', back_populates='movies')
     reviews = db.relationship('Review', back_populates='movie', cascade="all, delete")
-    lists = db.relationship('List', back_populates='movies')
+    # lists = db.relationship('List', back_populates='movies')
 
     def to_dict(self):
         return {
@@ -45,5 +45,5 @@ class Movie(db.Model):
             'createdAt': self.createdAt,
             'user': self.user.to_dict(),
             'songs': [review.to_dict() for review in self.reviews],
-            'lists': [list.to_dict() for list in self.lists]
+            'num_lists': len(self.lists)
         }
