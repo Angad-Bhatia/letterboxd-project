@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .catalog import catalog
 from datetime import datetime
 
 class Movie(db.Model):
@@ -25,7 +26,7 @@ class Movie(db.Model):
 
     user = db.relationship('User', back_populates='movies')
     reviews = db.relationship('Review', back_populates='movie', cascade="all, delete")
-    # lists = db.relationship('List', back_populates='movies')
+    lists = db.relationship('List', secondary=catalog, back_populates='movies')
 
     def to_dict(self):
         return {
@@ -43,7 +44,16 @@ class Movie(db.Model):
             'cast': self.cast,
             'trailer_url': self.trailer_url,
             'createdAt': self.createdAt,
+            'num_lists': len(self.lists),
             'user': self.user.to_dict(),
-            'songs': [review.to_dict() for review in self.reviews],
-            'num_lists': len(self.lists)
+            'reviews': [review.to_dict() for review in self.reviews]
+        }
+
+    def to_dict_review(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'user_id': self.user_id,
+            'art': self.art,
+            'year': self.year
         }
