@@ -31,3 +31,4 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email
         }
+    movies = db.relationship('Movie', back_populates='user')
