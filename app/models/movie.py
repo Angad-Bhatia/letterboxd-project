@@ -1,7 +1,9 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .catalog import catalog
+from .catalog import catalogs
 from datetime import datetime
 
+if environment == "production":
+    catalogs.schema = SCHEMA
 class Movie(db.Model):
     __tablename__ = 'movies'
 
@@ -12,13 +14,13 @@ class Movie(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     title = db.Column(db.String(100), nullable=False, unique=True)
     art = db.Column(db.String(255), nullable=False, unique=True)
-    tagline = db.Column(db.String(100), nullable=False, unique=True)
+    tagline = db.Column(db.String(150), nullable=False, unique=True)
     summary = db.Column(db.Text, nullable=False, unique=True)
     rating = db.Column(db.String(5), nullable=False)
     year = db.Column(db.Integer, nullable=False)
-    genre = db.Column(db.String(100), nullable=False)
-    director = db.Column(db.String(100), nullable=False)
-    writer = db.Column(db.String(100), nullable=False)
+    genre = db.Column(db.String(20), nullable=False)
+    director = db.Column(db.String(60), nullable=False)
+    writer = db.Column(db.String(60), nullable=False)
     cast = db.Column(db.Text, nullable=False)
     trailer_url = db.Column(db.String(100))
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
@@ -26,7 +28,7 @@ class Movie(db.Model):
 
     user = db.relationship('User', back_populates='movies')
     reviews = db.relationship('Review', back_populates='movie', cascade="all, delete")
-    lists = db.relationship('List', secondary=catalog, back_populates='movies')
+    lists = db.relationship('List', secondary=catalogs, back_populates='movies')
 
     def to_dict(self):
         return {

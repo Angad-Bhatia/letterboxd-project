@@ -1,7 +1,10 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .catalog import catalog
+from .catalog import catalogs
 from datetime import datetime
 
+if environment == "production":
+    catalogs.schema = SCHEMA
+    
 class List(db.Model):
     __tablename__ = 'lists'
 
@@ -19,7 +22,7 @@ class List(db.Model):
     updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     user = db.relationship('User', back_populates='lists')
-    movies = db.relationship('Movie', secondary=catalog, back_populates='lists')
+    movies = db.relationship('Movie', secondary=catalogs, back_populates='lists')
 
     def to_dict(self):
         return {

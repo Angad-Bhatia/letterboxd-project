@@ -4,10 +4,13 @@ from flask_login import UserMixin
 
 follows = db.Table(
     'follows',
-
-    db.Column('following_id', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'))),
-    db.Column('follower_id', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    db.Model.metadata,
+    db.Column('following_id', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
+    db.Column('follower_id', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True)
 )
+
+if environment == "production":
+    follows.schema = SCHEMA
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
