@@ -50,7 +50,7 @@ def upgrade():
     sa.Column('director', sa.String(length=60), nullable=False),
     sa.Column('writer', sa.String(length=60), nullable=False),
     sa.Column('cast', sa.Text(), nullable=False),
-    sa.Column('trailer_url', sa.String(length=60), nullable=True),
+    sa.Column('trailer_url', sa.String(length=100), nullable=True),
     sa.Column('createdAt', sa.DateTime(), nullable=False),
     sa.Column('updatedAt', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
