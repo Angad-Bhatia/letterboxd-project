@@ -42,20 +42,20 @@ class User(db.Model, UserMixin):
     lists = db.relationship('List', back_populates='user')
     following = db.relationship(
         'User', secondary=follows,
-        primaryjoin=db.foreign(follows.c.following_id) == id,
-        secondaryjoin=db.foreign(follows.c.follower_id) == id,
-        # primaryjoin=(follows.c.follower_id == id),
-        # secondaryjoin=(follows.c.following_id == id),
+        # primaryjoin=db.foreign(follows.c.following_id) == id,
+        # secondaryjoin=db.foreign(follows.c.follower_id) == id,
+        primaryjoin=(follows.c.follower_id == id),
+        secondaryjoin=(follows.c.following_id == id),
         foreign_keys=[follows.c.follower_id],
         back_populates='followers'
     )
 
     followers = db.relationship(
         'User', secondary=follows,
-        primaryjoin=db.foreign(follows.c.follower_id) == id,
-        secondaryjoin=db.foreign(follows.c.following_id) == id,
-        # primaryjoin=(follows.c.following_id == id),
-        # secondaryjoin=(follows.c.follower_id == id),
+        # primaryjoin=db.foreign(follows.c.follower_id) == id,
+        # secondaryjoin=db.foreign(follows.c.following_id) == id,
+        primaryjoin=(follows.c.following_id == id),
+        secondaryjoin=(follows.c.follower_id == id),
         foreign_keys=[follows.c.following_id],
         back_populates='following'
     )
