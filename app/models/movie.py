@@ -20,7 +20,7 @@ class Movie(db.Model):
     director = db.Column(db.String(60), nullable=False)
     writer = db.Column(db.String(60), nullable=False)
     cast = db.Column(db.Text, nullable=False)
-    trailer_url = db.Column(db.String(60))
+    trailer_url = db.Column(db.String(100))
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
