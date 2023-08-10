@@ -38,27 +38,23 @@ class User(db.Model, UserMixin):
             'email': self.email
         }
     movies = db.relationship('Movie', back_populates='user')
+    reviews = db.relationship('Review', back_populates='user')
+    lists = db.relationship('List', back_populates='user')
     following = db.relationship(
-        'User',
-        secondary=follows,
+        'User', secondary=follows,
         primaryjoin=db.foreign(follows.c.following_id) == id,
         secondaryjoin=db.foreign(follows.c.follower_id) == id,
-        # primaryjoin=db.ForeignKey(add_prefix_for_prod('follows.c.follower_id')) == id,
         # primaryjoin=(follows.c.follower_id == id),
-        # secondaryjoin=db.ForeignKey(add_prefix_for_prod('follows.c.following_id')) == id,
         # secondaryjoin=(follows.c.following_id == id),
         foreign_keys=[follows.c.follower_id],
         back_populates='followers'
     )
 
     followers = db.relationship(
-        'User',
-        secondary=follows,
+        'User', secondary=follows,
         primaryjoin=db.foreign(follows.c.follower_id) == id,
         secondaryjoin=db.foreign(follows.c.following_id) == id,
-        # primaryjoin=db.ForeignKey(add_prefix_for_prod('follows.following_id')) == id,
         # primaryjoin=(follows.c.following_id == id),
-        # secondaryjoin=db.ForeignKey(add_prefix_for_prod('follows.follower_id')) == id,
         # secondaryjoin=(follows.c.follower_id == id),
         foreign_keys=[follows.c.following_id],
         back_populates='following'
