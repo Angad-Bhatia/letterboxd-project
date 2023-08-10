@@ -1,0 +1,23 @@
+/* HOMELANDING css */
+
+.home-landing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .site-description-signup-container {
+
+} */
+
+/* .site-description-text-container {} */
+
+/* p.site-description-texts {} */
+
+button.get-started-button {
+
+}
+
+p.site-tagline {
+    
+}
