@@ -14,7 +14,7 @@ def get_all_movies():
 
 @movie_routes.route('/current')
 @login_required
-def get_user_moviess():
+def get_user_movies():
     """
     Query for all movies created by the current user and return them in a list of movie dictionaries
     """

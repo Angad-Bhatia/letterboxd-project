@@ -6,18 +6,54 @@
     align-items: center;
 }
 
-/* .site-description-signup-container {
-
-} */
+/* .site-description-signup-container {} */
 
 /* .site-description-text-container {} */
 
-/* p.site-description-texts {} */
-
-button.get-started-button {
-
+h3.site-description-texts {
+    color: white;
 }
 
-p.site-tagline {
-    
+/* button.get-started-button {} */
+
+/* p.site-tagline {} */
+
+.home-movies-container {
+    display: flex;
+    width: 95%;
+    justify-content: center;
+    gap: 1%;
 }
+
+.home-single-movie-container {
+    width: 10%;
+    border: .5px solid gray;
+}
+
+.home-movie-posters {
+    width: 100%;
+    height: 100%;
+    /* border: 2px solid red */
+}
+
+/* .reviews-lists-explanation-container {} */
+
+/* h4.write-share-compile-text {} */
+
+/* p.below-reviews-lists-text {} */
+
+/* .home-reviews-lists-container {} */
+
+/* .home-reviews-container {} */
+
+.home-reviews-header-container {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+
+/* p.home-recent-reviews {} */
+
+/* ul.home-reviews-list {} */
