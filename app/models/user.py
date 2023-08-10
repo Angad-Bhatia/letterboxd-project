@@ -41,10 +41,12 @@ class User(db.Model, UserMixin):
     following = db.relationship(
         'User',
         secondary=follows,
-        primaryjoin=db.ForeignKey(add_prefix_for_prod('follows.follower_id')) == id,
-        primaryjoin=(follows.c.follower_id == id),
-        secondaryjoin=db.ForeignKey(add_prefix_for_prod('follows.following_id')) == id,
-        secondaryjoin=(follows.c.following_id == id),
+        primaryjoin=db.foreign(follows.c.following_id) == id,
+        secondaryjoin=db.foreign(follows.c.follower_id) == id,
+        # primaryjoin=db.ForeignKey(add_prefix_for_prod('follows.c.follower_id')) == id,
+        # primaryjoin=(follows.c.follower_id == id),
+        # secondaryjoin=db.ForeignKey(add_prefix_for_prod('follows.c.following_id')) == id,
+        # secondaryjoin=(follows.c.following_id == id),
         foreign_keys=[follows.c.follower_id],
         back_populates='followers'
     )
@@ -52,11 +54,12 @@ class User(db.Model, UserMixin):
     followers = db.relationship(
         'User',
         secondary=follows,
-        primaryjoin=db.ForeignKey(add_prefix_for_prod('follows.following_id')) == id,
-        primaryjoin=(follows.c.following_id == id),
-        secondaryjoin=db.ForeignKey(add_prefix_for_prod('follows.follower_id')) == id,
-        secondaryjoin=(follows.c.follower_id == id),
+        primaryjoin=db.foreign(follows.c.follower_id) == id,
+        secondaryjoin=db.foreign(follows.c.following_id) == id,
+        # primaryjoin=db.ForeignKey(add_prefix_for_prod('follows.following_id')) == id,
+        # primaryjoin=(follows.c.following_id == id),
+        # secondaryjoin=db.ForeignKey(add_prefix_for_prod('follows.follower_id')) == id,
+        # secondaryjoin=(follows.c.follower_id == id),
         foreign_keys=[follows.c.following_id],
         back_populates='following'
     )
-
