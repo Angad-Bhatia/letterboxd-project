@@ -1,0 +1,21 @@
+/* .movie-details-container {} */
+
+/* .details-movie-info-container {} */
+
+/* .poster-trailer-container {} */
+
+/* .details-movie-stats {} */
+
+/* a.details-trailer-link {} */
+
+/* .details-movie-texts-container {} */
+
+.details-movie-info-header {
+    display: flex;
+    flex-direction: row;
+    border: red 2px solid;
+}
+
+h2.details-movie-title {
+    color: white;
+}

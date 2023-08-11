@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomeLandingPage from "./components/HomeLandingPage";
+import MovieDetails from "./components/MovieDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/" component={HomeLandingPage} />
           <Route path="/login" component={LoginFormPage} />
           <Route path="/signup" component={SignupFormPage} />
+          <Route path="/movies/:movieId" component={MovieDetails}/>
         </Switch>
       )}
     </>

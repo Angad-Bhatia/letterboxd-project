@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllMoviesThunk } from '../../store/movies';
+import { getAllReviewsThunk } from '../../store/reviews';
 import OpenModalButton from '../OpenModalButton';
 import SignupFormModal from '../SignupFormModal';
 import './HomeLanding.css';
@@ -10,12 +11,13 @@ const HomeLandingPage = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const allMoviesObject = useSelector(state => state.movies.allMovies);
-    const allReviewsObject = useSelector(state => state.reviews?.allReviews);
+    const allReviewsObject = useSelector(state => state.reviews.allReviews);
     const movies = Object.values(allMoviesObject);
-    const reviews = allReviewsObject ? Object.values(allReviewsObject) : [];
+    const reviews = Object.values(allReviewsObject);
 
     useEffect(() => {
         dispatch(getAllMoviesThunk());
+        dispatch(getAllReviewsThunk());
     }, [dispatch]);
 
     return (
@@ -35,8 +37,8 @@ const HomeLandingPage = () => {
             </div>
             <div className='home-movies-container'>
                 {movies.slice(0, 6).map(movie => (
-                    <div className='home-single-movie-container'>
-                        <Link to={`/movies/${movie.id}`} key={movie.id}>
+                    <div className='home-single-movie-container' key={movie.id}>
+                        <Link to={`/movies/${movie.id}`}>
                             <img src={movie.art} className='home-movie-posters' alt='Movie Poster'></img>
                         </Link>
                     </div>
@@ -58,8 +60,19 @@ const HomeLandingPage = () => {
                     </div>
                     <ul className='home-reviews-list'>
                         {reviews.slice(0,6).map(review => (
-                            <li className='home-reviews-li'>
-                                
+                            <li className='home-reviews-li' key={review.id}>
+                                <img className='home-review-movie-poster' src={review.movie.art} alt='Movie Poster'></img>
+                                <div className='home-review-info-container'>
+                                    <span className='home-review-movie-info'>
+                                        <h3 className='home-review-movie-title'>{review.movie.title}</h3>
+                                        <h6 className='home-review-movie-year'>{review.movie.year}</h6>
+                                    </span>
+                                    <span className='home-review-user-info'>
+                                        <p className='home-review-username'>{review.user.username}</p>
+                                        <p className='home-review-num-stars'>{review.stars}</p>
+                                    </span>
+                                    <p className='home-review-description-text'>{review.description}</p>
+                                </div>
                             </li>
                         ))}
                     </ul>

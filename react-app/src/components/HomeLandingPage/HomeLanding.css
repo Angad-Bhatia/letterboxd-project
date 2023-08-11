@@ -57,3 +57,28 @@ h3.site-description-texts {
 /* p.home-recent-reviews {} */
 
 /* ul.home-reviews-list {} */
+
+li.home-reviews-li {
+    list-style-type: none;
+    display: flex;
+}
+
+img.home-review-movie-poster {
+    width: 10%;
+}
+
+/* .home-review-info-container {} */
+
+span.home-review-movie-info {
+    display: flex;
+}
+
+span.home-review-user-info {
+    display: flex;
+}
+
+/* p.home-review-username {} */
+
+/* .home-review-num-stars {} */
+
+/* p.home-review-description-text {} */
