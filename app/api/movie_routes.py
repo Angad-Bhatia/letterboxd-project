@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Movie, db
+from app.models import Movie, Review, db
 from app.api.auth_routes import validation_errors_to_error_messages
 
 movie_routes = Blueprint('movies', __name__)
@@ -21,6 +21,15 @@ def get_user_movies():
     user_movies = Movie.query.filter(Movie.user_id == current_user.id)
     movies_dict = [movie.to_dict() for movie in user_movies]
     return jsonify(movies_dict)
+
+@movie_routes.route('/<int:id>/reviews')
+def get_reviews_for_movie(id):
+    """
+    Query for an movie by id and returns that movie's reviews, as a list of dictionaries
+    """
+    reviews = Review.query.filter(Review.movie_id == id)
+    reviews_dict = [review.to_dict() for review in reviews]
+    return jsonify(reviews_dict)
 
 @movie_routes.route('/<int:id>')
 def get_movie_by_id(id):
