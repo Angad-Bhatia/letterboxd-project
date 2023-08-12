@@ -1,4 +1,6 @@
-/* .movie-details-container {} */
+.movie-details-container {
+    display: flex;
+}
 
 /* .details-movie-info-container {} */
 
@@ -7,6 +9,10 @@
 /* .details-movie-stats {} */
 
 /* a.details-trailer-link {} */
+
+/* .details-right-movie-container {} */
+
+/* .details-movie-info-container {} */
 
 /* .details-movie-texts-container {} */
 
@@ -19,3 +25,36 @@
 h2.details-movie-title {
     color: white;
 }
+
+/* .details-year-director {} */
+
+/* .details-middle-movie-info-container {} */
+
+/* p.details-tagline-text {} */
+
+/* p.details-summary-test {} */
+
+/* p.cast-crew-header {} */
+
+table.details-crew-table {
+    list-style: none;
+}
+
+.details-tr {
+    height: fit-content;
+}
+
+.details-key-td {
+    display: flex;
+    align-items: end;
+}
+
+.details-empty-border {
+    width: 100%;
+    border-bottom: red 2px solid;
+}
+
+/* .details-right-add-review-container {} */
+
+
+/* .movie-details-reviews-container {} */
