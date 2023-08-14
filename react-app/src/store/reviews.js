@@ -26,7 +26,7 @@ export const loadSingleReviewAction = (review) => {
 
 // /////////////
   //CREATE a Review Action
-  export const createReviewAction = (review) => {
+export const createReviewAction = (review) => {
     return {
         type: CREATE_REVIEW,
         review

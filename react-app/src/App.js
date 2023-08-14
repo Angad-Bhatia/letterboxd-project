@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomeLandingPage from "./components/HomeLandingPage";
+import ProfilePage from "./components/ProfilePage";
 import MovieDetails from "./components/MovieDetails";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={HomeLandingPage} />
+          <Route exact path="/profile" component={ProfilePage} />
           <Route path="/login" component={LoginFormPage} />
           <Route path="/signup" component={SignupFormPage} />
           <Route path="/movies/:movieId" component={MovieDetails}/>

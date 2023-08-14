@@ -6,6 +6,10 @@
 
 /* .poster-trailer-container {} */
 
+img.details-movie-poster {
+    width: 80%;
+}
+
 /* .details-movie-stats {} */
 
 /* a.details-trailer-link {} */
@@ -19,7 +23,7 @@
 .details-movie-info-header {
     display: flex;
     flex-direction: row;
-    border: red 2px solid;
+    /* border: red 2px solid; */
 }
 
 h2.details-movie-title {
@@ -37,21 +41,40 @@ h2.details-movie-title {
 /* p.cast-crew-header {} */
 
 table.details-crew-table {
-    list-style: none;
+    /* margin: 0%;
+    padding: 0%; */
+}
+
+p.details-key-p {
+    margin: 0%;
 }
 
 .details-tr {
-    height: fit-content;
+    /* margin: 0%;
+    padding: 0%; */
+    height: min-content;
 }
 
 .details-key-td {
     display: flex;
-    align-items: end;
+    align-items: flex-end;
+    width: 200%;
+    /* margin: 0%;
+    padding: 0%; */
+    /* height: 0px; */
+
 }
 
 .details-empty-border {
     width: 100%;
-    border-bottom: red 2px solid;
+    /* margin: 0%;
+    padding: 0%; */
+    /* text-decoration: underline; */
+    border-bottom: gray 2px dotted;
+}
+
+td.details-td-text {
+    padding-left: 9%;
 }
 
 /* .details-right-add-review-container {} */
