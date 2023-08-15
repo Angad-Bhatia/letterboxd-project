@@ -9,6 +9,7 @@ import HomeLandingPage from "./components/HomeLandingPage";
 import ProfilePage from "./components/ProfilePage";
 import MovieDetails from "./components/MovieDetails";
 import CreateMovie from "./components/MovieForm/CreateMovie";
+import EditMovie from "./components/MovieForm/EditMovie";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
           <Route path="/login" component={LoginFormPage} />
           <Route path="/signup" component={SignupFormPage} />
           <Route path="/movies/new" component={CreateMovie} />
+          <Route path="/movies/:movieId/edit" component={EditMovie}/>
           <Route path="/movies/:movieId" component={MovieDetails}/>
         </Switch>
       )}

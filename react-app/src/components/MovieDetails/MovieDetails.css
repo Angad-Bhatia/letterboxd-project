@@ -58,7 +58,7 @@ p.details-key-p {
 .details-key-td {
     display: flex;
     align-items: flex-end;
-    width: 200%;
+    /* width: 200%; */
     /* margin: 0%;
     padding: 0%; */
     /* height: 0px; */
@@ -73,7 +73,7 @@ p.details-key-p {
 }
 
 td.details-td-text {
-    padding-left: 9%;
+    /* padding-left: 9%; */
 }
 
 /* .details-right-add-review-container {} */

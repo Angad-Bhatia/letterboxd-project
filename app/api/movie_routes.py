@@ -23,16 +23,17 @@ def get_user_movies():
     movies_dict = [movie.to_dict() for movie in user_movies]
     return jsonify(movies_dict)
 
+
+# Create a new Movie
 @movie_routes.route('/new-movie', methods=['POST'])
 @login_required
 def create_new_movie():
     """
-    Create a new Movie
+    Create a new Movie and return the movie in dictionary form
     """
     form = CreateMovieForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    # form.data['user_id'] = current_user.id
     if form.validate_on_submit():
 
         new_movie = Movie (
@@ -56,6 +57,43 @@ def create_new_movie():
         return jsonify(new_movie.to_dict())
 
     return jsonify({ 'errors': validation_errors_to_error_messages(form.errors) }), 401
+
+
+# Edit a Movie
+@movie_routes.route('/<int:id>/edit', methods=['PUT'])
+@login_required
+def edit_movie(id):
+    """
+    Edit an existing Movie and return Movie in dictionary form after updating
+    """
+    form = EditMovieForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        movie = Movie.query.get(id)
+
+        if movie is None:
+            return jsonify({'errors': 'Movie not found'}), 404
+        elif movie.user_id != current_user.id:
+            return jsonify({'errors': 'Movie does not belong to user'}), 403
+
+        movie.title = form.data['title'],
+        movie.art = form.data['art'],
+        movie.tagline = form.data['tagline'],
+        movie.summary = form.data['summary'],
+        movie.rating = form.data['rating'],
+        movie.year = form.data['year'],
+        movie.genre = form.data['genre'],
+        movie.director = form.data['director'],
+        movie.writer = form.data['writer'],
+        movie.cast = form.data['cast'],
+        movie.trailer_url = form.data['trailer_url']
+
+        db.session.commit()
+
+        return jsonify(movie.to_dict())
+
+    return jsonify({'errors': validation_errors_to_error_messages(form.errors)}), 401
 
 
 @movie_routes.route('/<int:id>/reviews')

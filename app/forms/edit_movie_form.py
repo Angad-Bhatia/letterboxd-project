@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired
 
 
 class EditMovieForm(FlaskForm):
-    title = StringField("title", validators=[DataRequired()])
+    title = StringField("name", validators=[DataRequired()])
     art = StringField("art", validators=[DataRequired()])
     tagline = StringField('tagline', validators=[DataRequired()])
     summary = StringField('summary', validators=[DataRequired()])

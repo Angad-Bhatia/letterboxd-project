@@ -100,10 +100,28 @@ export const createMovieThunk = (formData) => async (dispatch) => {
         return newMovie;
     } else {
         const error = await response.json();
-        console.log('thunkerr', error);
         return normalizeUniqueErrors(error.errors);
     }
 };
+
+// Edit a Movie Thunk
+export const updateMovieThunk = (movieId, formData) => async (dispatch) => {
+    // console.log('Edit a movie Thunk, this is movieId : ', movieId);
+    const response = await fetch(`/api/movies/${movieId}/edit`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      // console.log('After update movie fetch, this is response : ', response)
+    });
+    if (response.ok) {
+        const updatedMovie = await response.json();
+        dispatch(updateMovieAction(updatedMovie));
+        return updatedMovie;
+    } else {
+        const error = await response.json();
+        return error.errors;
+    }
+}
 
 /*****************  REDUCER FUNCTION   ****************/
 

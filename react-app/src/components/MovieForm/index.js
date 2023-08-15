@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { createMovieThunk } from '../../store/movies';
+import { createMovieThunk, updateMovieThunk } from '../../store/movies';
 import { movieValidation, cleanMovieForm } from '../../helpers';
 import './MovieForm.css';
 
@@ -39,21 +39,20 @@ const MovieForm = ({ formType, movie }) => {
             let movieResponse;
             const cleanData = cleanMovieForm(formData);
 
-            if (formType === 'Add a Movie') {
+            if (formType === 'Add a Film') {
                 movieResponse = await dispatch(createMovieThunk(cleanData));
-            } else if (formType) {}
+            } else if (formType === 'Edit a Film') {
+                movieResponse = await dispatch(updateMovieThunk(movie.id, cleanData));
+            }
 
             if (!movieResponse?.id) {
                 setErrors({ ...movieResponse, flag: true });
-                console.log('errors here', movieResponse);
             } else {
                 history.push(`/movies/${movieResponse.id}`);
             }
         }
-
     };
 
-    console.log('general', errors?.unique);
     return (
         <div className='movie-form-container'>
             <form className='movie-form' onSubmit={handleSubmit}>

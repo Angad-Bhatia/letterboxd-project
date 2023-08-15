@@ -8,7 +8,7 @@ const CreateMovie = () => {
     if (user?.id) {
         return (
             <MovieForm
-                formType='Add a Movie'
+                formType='Add a Film'
             />
         )
     } else {

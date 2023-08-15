@@ -41,6 +41,7 @@ const HomeLandingPage = () => {
                         <Link to={`/movies/${movie.id}`}>
                             <img src={movie.art} className='home-movie-posters' alt='Movie Poster'></img>
                         </Link>
+                        {user?.id && <NavLink to={`/movies/${movie.id}/edit`}>Edit</NavLink>}
                     </div>
                 ))}
             </div>
