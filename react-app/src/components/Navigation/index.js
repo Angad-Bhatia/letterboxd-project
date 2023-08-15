@@ -7,6 +7,7 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
+
 	return (
 		<ul>
 			<li>
@@ -17,6 +18,9 @@ function Navigation({ isLoaded }){
 					<ProfileButton user={sessionUser} />
 				</li>
 			)}
+			<li>
+				<NavLink exact to="/movies/new">Create a Movie</NavLink>
+			</li>
 		</ul>
 	);
 }

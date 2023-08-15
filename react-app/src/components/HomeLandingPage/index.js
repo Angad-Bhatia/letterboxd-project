@@ -22,7 +22,7 @@ const HomeLandingPage = () => {
 
     return (
         <div className='home-landing-container'>
-            <span>** Placeholder for horizontal poster **</span>
+            <img className='home-main-image' src='https://a.ltrbxd.com/resized/sm/upload/3i/x2/91/bl/oppenheimer-1200-1200-675-675-crop-000000.jpg'></img>
             <div className='site-description-signup-container'>
                 <div className='site-description-text-container'>
                     <h3 className='site-description-texts'>Track films you've watched</h3>

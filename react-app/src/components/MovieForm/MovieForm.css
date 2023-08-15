@@ -1,0 +1,8 @@
+.movie-field > .field-label {
+    display: flex;
+}
+
+.field-label > label {
+    padding-right: 1%;
+    /* border: red 2px solid; */
+}

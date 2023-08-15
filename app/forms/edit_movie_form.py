@@ -14,5 +14,5 @@ class EditMovieForm(FlaskForm):
     director = StringField('director', validators=[DataRequired()])
     writer = StringField('writer', validators=[DataRequired()])
     cast = StringField('cast', validators=[DataRequired()])
-    trailer_url = StringField('trailer_url', validators=[DataRequired()])
+    trailer_url = StringField('trailer_url')
     submit = SubmitField("Submit")

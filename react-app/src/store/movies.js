@@ -1,3 +1,4 @@
+import { normalizeUniqueErrors } from "../helpers";
 /*****************  ACTION TYPES   ****************/
 
 const LOAD_ALL_MOVIES = 'movies/LOAD_ALL_MOVIES';
@@ -78,6 +79,29 @@ export const getMovieByIdThunk = (movieId) => async (dispatch) => {
         const movie = await response.json();
         dispatch(loadSingleMovieAction(movie));
         return movie;
+    }
+};
+
+//Create a Movie Thunk
+export const createMovieThunk = (formData) => async (dispatch) => {
+    // console.log('Create movie thunk running, this is the formData', formData)
+
+    const response = await fetch('/api/movies/new-movie', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+        // console.log('After fetch, this is the response', response)
+    });
+
+
+    if (response.ok) {
+        const newMovie = await response.json();
+        dispatch(createMovieAction(newMovie));
+        return newMovie;
+    } else {
+        const error = await response.json();
+        console.log('thunkerr', error);
+        return normalizeUniqueErrors(error.errors);
     }
 };
 

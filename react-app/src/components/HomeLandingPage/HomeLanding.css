@@ -6,6 +6,11 @@
     align-items: center;
 }
 
+img.home-main-image {
+    width: 100%;
+    height: 5%;
+}
+
 /* .site-description-signup-container {} */
 
 /* .site-description-text-container {} */

@@ -23,7 +23,7 @@ def get_user_movies():
     movies_dict = [movie.to_dict() for movie in user_movies]
     return jsonify(movies_dict)
 
-@movie_routes.route('/new')
+@movie_routes.route('/new-movie', methods=['POST'])
 @login_required
 def create_new_movie():
     """
@@ -32,7 +32,7 @@ def create_new_movie():
     form = CreateMovieForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    form.data['user_id'] = current_user.id
+    # form.data['user_id'] = current_user.id
     if form.validate_on_submit():
 
         new_movie = Movie (
@@ -55,7 +55,7 @@ def create_new_movie():
 
         return jsonify(new_movie.to_dict())
 
-    return { 'errors': validation_errors_to_error_messages(form.errors) }, 400
+    return jsonify({ 'errors': validation_errors_to_error_messages(form.errors) }), 401
 
 
 @movie_routes.route('/<int:id>/reviews')
