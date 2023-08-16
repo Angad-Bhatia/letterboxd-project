@@ -46,6 +46,7 @@ class Movie(db.Model):
             'cast': self.cast,
             'trailer_url': self.trailer_url,
             'createdAt': self.createdAt,
+            'updatedAt': self.updatedAt,
             'num_lists': len(self.lists),
             'user': self.user.to_dict(),
             'reviews': [review.to_dict() for review in self.reviews]

@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUserAllMoviesThunk } from '../../store/movies';
 import { getCurrentUserAllReviewsThunk } from '../../store/reviews';
+import { dateToString } from '../../helpers';
 import './Profile.css';
 
 const ProfilePage = () => {
@@ -9,6 +11,8 @@ const ProfilePage = () => {
     const user = useSelector(state => state.session.user);
     const moviesObject = useSelector(state => state.movies.allMovies);
     const reviewsObject = useSelector(state => state.reviews.allReviews);
+    const movies = Object.values(moviesObject).sort((movie1, movie2) => movie2.id - movie1.id);
+    const reviews = Object.values(reviewsObject).sort((review1, review2) => review2.id - review1.id);
 
     useEffect(() => {
         dispatch(getCurrentUserAllMoviesThunk());
@@ -20,7 +24,58 @@ const ProfilePage = () => {
     }
 
     return (
-        <div className='profile-page-container'></div>
+        <div className='profile-page-container'>
+            <div className='profile-header-container'>
+                <h3>{user.username}</h3>
+            </div>
+            <div className='user-stats-container'>
+                <div className='user-film-stats'>
+                    <h3>{movies.length}</h3>
+                    <p>FILM{movies.length === 1 ? '': 'S'}</p>
+                </div>
+                <div className='user-review-stats'>
+                    <h3>{reviews.length}</h3>
+                    <p>REVIEW{reviews.length === 1 ? '': 'S'}</p>
+                </div>
+            </div>
+            <div className='profile-tabs'>
+                <p>Films</p>
+                <p>Reviews</p>
+            </div>
+            <div className='profile-recent-movies'>
+                <p className='recent-films-header'>RECENT FILMS</p>
+                <div className='profile-movies-container'>
+                    {movies.slice(0,4).map(movie => (
+                        <div className='home-single-movie-container' key={movie.id}>
+                            <Link to={`/movies/${movie.id}`}>
+                                <img src={movie.art} className='home-movie-posters' alt='Movie Poster'></img>
+                            </Link>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div className='profile-recent-reviews'>
+            <ul className='profile-reviews-list'>
+                        {reviews.map(review => (
+                            <li className='home-reviews-li' key={review.id}>
+                                <img className='home-review-movie-poster' src={review.movie.art} alt='Movie Poster'></img>
+                                <div className='profile-review-info-container'>
+                                    <span className='profile-review-movie-info'>
+                                        <h3 className='profile-review-movie-title'>{review.movie.title}</h3>
+                                        <h6 className='profile-review-movie-year'>{review.movie.year}</h6>
+                                    </span>
+                                    <span className='profile-review-user-info'>
+                                        <p className='profile-review-num-stars'>{review.stars}</p>
+                                        <p className='profile-review-date'>Watched {dateToString(review.updatedAt)}</p>
+                                    </span>
+                                    <p className='profile-review-description-text'>{review.description}</p>
+                                    <p className='profile-review-isliked'>{review.like && 'Liked!'}</p>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+            </div>
+        </div>
     )
 }
 

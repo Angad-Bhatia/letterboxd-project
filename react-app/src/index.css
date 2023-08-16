@@ -21,3 +21,8 @@ button {
 .errors {
     color: red;
 }
+
+a {
+    color: white;
+    cursor: pointer;
+}
