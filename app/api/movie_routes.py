@@ -51,6 +51,7 @@ def create_new_movie():
             trailer_url = form.data['trailer_url']
         )
 
+        # print('in create', new_movie.art)
         db.session.add(new_movie)
         db.session.commit()
 
@@ -77,16 +78,16 @@ def edit_movie(id):
         elif movie.user_id != current_user.id:
             return jsonify({'errors': 'Movie does not belong to user'}), 403
 
-        movie.title = form.data['title'],
-        movie.art = form.data['art'],
-        movie.tagline = form.data['tagline'],
-        movie.summary = form.data['summary'],
-        movie.rating = form.data['rating'],
-        movie.year = form.data['year'],
-        movie.genre = form.data['genre'],
-        movie.director = form.data['director'],
-        movie.writer = form.data['writer'],
-        movie.cast = form.data['cast'],
+        movie.title = form.data['title']
+        movie.art = form.data['art']
+        movie.tagline = form.data['tagline']
+        movie.summary = form.data['summary']
+        movie.rating = form.data['rating']
+        movie.year = form.data['year']
+        movie.genre = form.data['genre']
+        movie.director = form.data['director']
+        movie.writer = form.data['writer']
+        movie.cast = form.data['cast']
         movie.trailer_url = form.data['trailer_url']
 
         db.session.commit()
@@ -95,6 +96,20 @@ def edit_movie(id):
 
     return jsonify({'errors': validation_errors_to_error_messages(form.errors)}), 401
 
+# Delete a Movie created by the user
+@movie_routes.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete_movie(id):
+    movie = Movie.query.get(id)
+
+    if movie is None:
+        return jsonify({'errors': 'Movie not found'}), 404
+    elif movie.user_id != current_user.id:
+        return jsonify({"errors": "Movie does not belong to user"}), 403
+
+    db.session.delete(movie)
+    db.session.commit()
+    return jsonify({'message': 'Successfully Deleted'})
 
 @movie_routes.route('/<int:id>/reviews')
 def get_reviews_for_movie(id):

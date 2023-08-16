@@ -117,7 +117,7 @@ export const capitalizeSentence = (str) => {
 
 export const cleanMovieForm = ({ title, art, tagline, summary, rating, year, genre, director, writer, cast, trailer_url }) => {
     const actorsArray = cast.split(', ').map(actor => capitalizeSentence(actor));
-    console.log('', tagline, title, art);
+    
     return {
         title: capitalizeSentence(title),
         art,

@@ -13,14 +13,14 @@ def seed_movies():
         genre='Crime',
         director='Martin Scorsese',
         writer='William Monahan',
-        cast='Leonardo DiCaprio, Matt Damon, Jack Nicholson, Mark Wahlberg, Vera Farmiga, Ray Winstone, Martin Sheen, Alec Baldwin',
+        cast='Leonardo DiCaprio, Matt Damon, Jack Nicholson, Mark Wahlberg, Vera Farmiga, Ray Winstone, Martin Sheen, Alec Baldwin, Anthony Anderson',
         trailer_url='https://www.youtube.com/watch?v=ggs6Ip97vRU&ab_channel=WarnerBros.'
     )
 
     movie2 = Movie(
         user_id=1,
         title='The Social Network',
-        art='https://a.ltrbxd.com/resized/sm/upload/nw/cm/pa/ai/sGQv3ZMZBDBnl3z42Q0mEQ5uiDe-0-500-0-750-crop.jpg?v=54ee59f7cd',
+        art='https://a.ltrbxd.com/resized/sm/upload/nw/cm/pa/ai/sGQv3ZMZBDBnl3z42Q0mEQ5uiDe-0-500-0-750-crop.jpg',
         tagline="YOU DON'T GET TO 500 MILLION FRIENDS WITHOUT MAKING A FEW ENEMIES.",
         summary="On a fall night in 2003, Harvard undergrad and computer programming genius Mark Zuckerberg sits down at his computer and heatedly begins working on a new idea. In a fury of blogging and programming, what begins in his dorm room as a small site among friends soon becomes a global social network and a revolution in communication. A mere six years and 500 million friends later, Mark Zuckerberg is the youngest billionaire in history… but for this entrepreneur, success leads to both personal and legal complications.",
         rating='PG-13',
@@ -78,7 +78,37 @@ def seed_movies():
     )
 
     movie6 = Movie(
-        user_id='',
+        user_id=1,
+        title='Chinatown',
+        art='https://a.ltrbxd.com/resized/film-poster/5/1/3/2/3/51323-chinatown-0-500-0-750-crop.jpg',
+        tagline="YOU GET TOUGH. YOU GET TENDER. YOU GET CLOSE TO EACH OTHER. MAYBE YOU EVEN GET CLOSE TO THE TRUTH.",
+        summary="Private eye Jake Gittes lives off of the murky moral climate of sunbaked, pre-World War II Southern California. Hired by a beautiful socialite to investigate her husband’s extra-marital affair, Gittes is swept into a maelstrom of double dealings and deadly deceits, uncovering a web of personal and political scandals that come crashing together.",
+        rating='R',
+        year=1974,
+        genre='Mystery',
+        director='Roman Polanski',
+        writer='Robert Towne',
+        cast='Jack Nicholson, Faye Dunaway, John Huston, Perry Lopez, John Hillerman, Diane Ladd',
+        trailer_url='https://www.youtube.com/watch?v=T37QkBc4IGY&ab_channel=ParamountMovies'
+    )
+
+    movie7 = Movie(
+        user_id=3,
+        title='Scream',
+        art='https://a.ltrbxd.com/resized/film-poster/4/9/4/5/5/49455-scream-0-500-0-750-crop.jpg',
+        tagline="SOMEONE HAS TAKEN THEIR LOVE OF SCARY MOVIES ONE STEP TOO FAR.",
+        summary="A killer known as Ghostface begins killing off teenagers, and as the body count begins rising, one girl and her friends find themselves contemplating the ‘rules’ of horror films as they find themselves living in a real-life one.",
+        rating='R',
+        year=1996,
+        genre='Horror',
+        director='Wes Craven',
+        writer='Kevin Williamson',
+        cast='Neve Campbell, Courtney Cox, Matthew Lillard, David Arquette, Rose McGowan, Jamie Kennedy, Skeet Ulrich',
+        trailer_url='https://www.youtube.com/watch?v=lvR_kKGfax0&ab_channel=CappaZack'
+    )
+
+    movie8 = Movie(
+        user_id=0,
         title='',
         art='',
         tagline="",
@@ -92,7 +122,7 @@ def seed_movies():
         trailer_url=''
     )
 
-    db.session.add_all([movie1, movie2, movie3, movie4, movie5])
+    db.session.add_all([movie1, movie2, movie3, movie4, movie5, movie6, movie7])
     db.session.commit()
 
 def undo_movies():

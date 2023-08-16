@@ -36,7 +36,7 @@ class Movie(db.Model):
             'title': self.title,
             'user_id': self.user_id,
             'art': self.art,
-            'tagline': self.tagline.upper(),
+            'tagline': self.tagline,
             'summary': self.summary,
             'rating': self.rating,
             'year': self.year,

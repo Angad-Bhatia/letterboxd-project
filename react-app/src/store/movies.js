@@ -106,7 +106,7 @@ export const createMovieThunk = (formData) => async (dispatch) => {
 
 // Edit a Movie Thunk
 export const updateMovieThunk = (movieId, formData) => async (dispatch) => {
-    // console.log('Edit a movie Thunk, this is movieId : ', movieId);
+    console.log('Edit a movie Thunk, this is movieId : ', movieId, formData);
     const response = await fetch(`/api/movies/${movieId}/edit`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -122,6 +122,18 @@ export const updateMovieThunk = (movieId, formData) => async (dispatch) => {
         return error.errors;
     }
 }
+
+// Delete Movie Thunk
+export const deleteMovieThunk = (movieId) => async (dispatch) => {
+    const response = await fetch(`/api/movies/${movieId}/delete`, {
+        method: 'DELETE',
+    });
+
+    if (response.ok) {
+        dispatch(deleteMovieAction(movieId));
+        return response;
+    }
+};
 
 /*****************  REDUCER FUNCTION   ****************/
 
@@ -144,6 +156,10 @@ const movieReducer = (state = initialState, action) => {
             return { ...state, allMovies: { ...state.allMovies, [action.movie.id] : action.movie }, singleMovie: { [action.movie.id] : action.movie } };
         case UPDATE_MOVIE:
             return { ...state, allMovies: { ...state.allMovies, [action.movie.id] : action.movie }, singleMovie: { [action.movie.id] : action.movie } };
+        case DELETE_MOVIE:
+            const newMovies = { ...state.allMovies };
+            delete newMovies[action.movieId];
+            return { ...state, allMovies: newMovies };
         default:
             return state;
     };

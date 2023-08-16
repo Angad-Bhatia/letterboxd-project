@@ -7,6 +7,9 @@ import OpenModalButton from '../OpenModalButton';
 import SignupFormModal from '../SignupFormModal';
 import './HomeLanding.css';
 
+
+import { deleteMovieThunk } from '../../store/movies';
+
 const HomeLandingPage = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
@@ -36,12 +39,17 @@ const HomeLandingPage = () => {
                 <p className='site-tagline'>The social network for film lovers</p>
             </div>
             <div className='home-movies-container'>
-                {movies.slice(0, 6).map(movie => (
+                {movies.slice(0, 10).map(movie => (
                     <div className='home-single-movie-container' key={movie.id}>
                         <Link to={`/movies/${movie.id}`}>
                             <img src={movie.art} className='home-movie-posters' alt='Movie Poster'></img>
                         </Link>
-                        {user?.id && <NavLink to={`/movies/${movie.id}/edit`}>Edit</NavLink>}
+                        {user?.id === movie.user_id &&
+                            <>
+                                <NavLink to={`/movies/${movie.id}/edit`}>Edit</NavLink>
+                                <button onClick={e => dispatch(deleteMovieThunk(movie.id))}>Delete</button>
+                            </>
+                        }
                     </div>
                 ))}
             </div>
