@@ -239,11 +239,11 @@ const MovieForm = ({ formType, movie }) => {
                         type="submit"
                     >{formType}
                     </button>
-                    <button
+                    {/* <button
                         id="movie-cancel-button"
                         // onClick={handleCancelClick}
                     >Cancel
-                    </button>
+                    </button> */}
                 </div>
             </form>
         </div>

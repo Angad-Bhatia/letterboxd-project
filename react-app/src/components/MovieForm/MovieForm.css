@@ -1,3 +1,7 @@
+.movie-field {
+    padding: 2%;
+}
+
 .movie-field > .field-label {
     display: flex;
 }
@@ -5,4 +9,14 @@
 .field-label > label {
     padding-right: 1%;
     /* border: red 2px solid; */
+}
+
+
+.movie-form-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.movie-field > input {
+    width: 60%;
 }

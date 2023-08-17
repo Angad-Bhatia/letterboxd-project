@@ -15,11 +15,23 @@ function LoginFormModal() {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      let credentialError;
+      if (data[0] !== "An error occurred. Please try again.") {
+        credentialError = data[0].split(' : ')[1]
+        setErrors([credentialError]);
+      } else {
+        setErrors(data);
+      }
     } else {
         closeModal()
     }
   };
+
+  const demoClick = async (e) => {
+		e.stopPropagation();
+		await dispatch(login('demo@aa.io', 'password'));
+    closeModal();
+	}
 
   return (
     <div className="login-form-modal-container">
@@ -48,6 +60,7 @@ function LoginFormModal() {
         </label>
         <button type="submit">Log In</button>
       </form>
+      <button onClick={demoClick}>Demo</button>
     </div>
   );
 }

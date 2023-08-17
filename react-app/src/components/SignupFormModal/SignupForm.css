@@ -10,3 +10,9 @@
     height: 600px;
     padding: 5px;
 }
+
+form.signup-form {
+    display: flex;
+    flex-direction: column;
+    
+}
