@@ -1,27 +1,39 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
-
+// import favicon from '../../../public/'
 function Navigation({ isLoaded }){
+	const history = useHistory();
 	const sessionUser = useSelector(state => state.session.user);
 
+	const plusMovie = (e) => {
+		e.stopPropagation();
+		history.push('/movies/new');
+	}
 
 	return (
-		<ul>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
-			</li>
-			{isLoaded && (
-				<li>
-					<ProfileButton user={sessionUser} />
+		<div className='navbar-container'>
+			<div>
+				<NavLink exact to="/" className='route-home'>
+					<img src='/public/favicon.ico'></img>
+					<h2>SceneIt</h2>
+				</NavLink>
+			</div>
+			<ul className='navlinks-container'>
+				{isLoaded && (
+					<li className='profile-button-li'>
+						<ProfileButton user={sessionUser} />
+					</li>
+				)}
+				<li><NavLink to='/movies'>FILMS</NavLink></li>
+				<li><NavLink to='/reviews'>REVIEWS</NavLink></li>
+				<li className='new-movie-li'>
+					<button onClick={plusMovie} className='new-movie-button'>+ Movie</button>
 				</li>
-			)}
-			<li>
-				<NavLink exact to="/movies/new">Create a Movie</NavLink>
-			</li>
-		</ul>
+			</ul>
+		</div>
 	);
 }
 

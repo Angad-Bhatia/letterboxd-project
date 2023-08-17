@@ -1,26 +1,38 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+// import { useModal } from '../../context/Modal';
 import { getMovieByIdThunk } from '../../store/movies';
 import { loadAllReviewsAction } from '../../store/reviews';
+import OpenModalButton from '../OpenModalButton';
+import CreateReviewModal from '../ReviewFormModal/CreateReview';
+
 import { dateToString } from '../../helpers';
 import './MovieDetails.css'
 
 const MovieDetails = () => {
-    const { movieId } = useParams();
     const dispatch = useDispatch();
+    const { movieId } = useParams();
+    // const { closeModal } = useModal();
+    const user = useSelector(state => state.session.user);
     const movie = useSelector(state => state.movies.singleMovie[movieId]);
     const reviewsObject = useSelector(state => state.reviews.allReviews);
+    const reviews = Object.values(reviewsObject);
+    const [userReview, setUserReview] = useState(false);
 
     useEffect(() => {
         dispatch(getMovieByIdThunk(movieId));
-    }, [dispatch, movieId]);
+    }, [dispatch, movieId, reviews.length]);
 
     useEffect(() => {
         if (movie?.id) {
             dispatch(loadAllReviewsAction(movie.reviews));
         }
     }, [dispatch, movie]);
+
+    useEffect(() => {
+        setUserReview(reviews.find(review => review.user_id === user?.id));
+    }, [reviews]);
 
     if (!movie?.id) {
         return <h1 className='not-found-conditional'>Film Not Found</h1>
@@ -30,16 +42,16 @@ const MovieDetails = () => {
         <div className='movie-details-container'>
             <div className='poster-trailer-container'>
                 <img src={movie.art} className='details-movie-poster' alt='Movie Poster'></img>
-                <span className='details-movie-stats'></span>
+                <span className='details-movie-stats'>{movie.likes} Likes</span>
                 <a href={movie.trailer_url} className='details-trailer-link' target='_blank' rel="noreferrer">Trailer</a>
             </div>
             <div className='details-right-movie-container'>
                 <div className='details-movie-info-container'>
+                    <span className='details-movie-info-header'>
+                        <h1 className='details-movie-title'>{movie.title}</h1>
+                        <p className='details-year-director'>{movie.year} Directed by {movie.director}</p>
+                    </span>
                     <div className='details-movie-texts-container'>
-                        <span className='details-movie-info-header'>
-                            <h2 className='details-movie-title'>{movie.title}</h2>
-                            <p className='details-year-director'>{movie.year} Directed by {movie.director}</p>
-                        </span>
                         <div className='details-middle-movie-info-container'>
                             <p className='details-tagline-text'>{movie.tagline}</p>
                             <p className='details-summary-test'>{movie.summary}</p>
@@ -85,13 +97,20 @@ const MovieDetails = () => {
                             </table>
                         </div>
                         <div className='details-right-add-review-container'>
-
+                            {user?.id && !userReview &&
+                                <OpenModalButton
+                                    modalComponent={<CreateReviewModal movie={movie} className="review-form-actual-modal" />}
+                                    buttonText="Write Review"
+                                    className="write-review-button"
+                                />
+                            }
+                            <span>AVERAGE RATING: {movie.star_rating} STARS</span>
                         </div>
                     </div>
                 </div>
                 <div className='movie-details-reviews-container'>
                     <p className='details-reviews-index-header'>REVIEWS</p>
-                    {Object.values(reviewsObject).map(review => (
+                    {reviews.map(review => (
                         <div className='details-review-items' key={review.id}>
                             <p className='details-review-username-stars'>Review by {review.user.username} {review.stars}</p>
                             <p className='details-review-text'>{review.description}</p>

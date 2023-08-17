@@ -18,7 +18,7 @@ const EditMovie = () => {
 
     return (
         <MovieForm
-            formType='Edit a Film'
+            formType='Edit Film'
             movie={movie}
         />
     )

@@ -9,7 +9,7 @@
 html {
     /* background-color: rgb(19, 19, 19); */
     font-family: 'Lato', sans-serif;
-    color: #969696;
+    color: #d8e0e8;;
     background-image: linear-gradient(#1a1a1a,#071b45);
     height: 1300px;
 }
@@ -23,6 +23,11 @@ button {
 }
 
 a {
-    color: white;
+    color: #d8e0e8;;
     cursor: pointer;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
 }

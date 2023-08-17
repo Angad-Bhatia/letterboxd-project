@@ -80,6 +80,61 @@ export const getReviewByIdThunk = (reviewId) => async (dispatch) => {
     }
 };
 
+/*********** FIX****************/
+//Create a Review Thunk
+export const createReviewThunk = (movieId, formData) => async (dispatch) => {
+    // console.log('Create Review thunk running, this is the formData', formData)
+
+    const response = await fetch(`/api/movies/${movieId}/new-review`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+        // console.log('After fetch, this is the response', response)
+    });
+
+
+    if (response.ok) {
+        const newReview = await response.json();
+        dispatch(createReviewAction(newReview));
+        return newReview;
+    } else {
+        const errors = await response.json();
+        return errors.errors;
+    }
+};
+
+// Edit a Review Thunk
+export const updateReviewThunk = (reviewId, formData) => async (dispatch) => {
+    console.log('Edit a Review Thunk, this is reviewId : ', reviewId, formData);
+    const response = await fetch(`/api/reviews/${reviewId}/edit`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      // console.log('After update Review fetch, this is response : ', response)
+    });
+    if (response.ok) {
+        const updatedReview = await response.json();
+        dispatch(updateReviewAction(updatedReview));
+        return updatedReview;
+    } else {
+        const error = await response.json();
+        return error.errors;
+    }
+}
+
+// Delete Review Thunk
+export const deleteReviewThunk = (reviewId) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/${reviewId}/delete`, {
+        method: 'DELETE',
+    });
+
+    if (response.ok) {
+        dispatch(deleteReviewAction(reviewId));
+        return response;
+    }
+};
+
+
 /*****************  REDUCER FUNCTION   ****************/
 
 const initialState = {
@@ -102,6 +157,9 @@ const reviewReducer = (state = initialState, action) => {
         case UPDATE_REVIEW:
             return { ...state, allReviews: { ...state.allReviews, [action.review.id] : action.review }, singleReview: { [action.review.id] : action.review } };
         case DELETE_REVIEW:
+            const newReviews = { ...state.allReviews };
+            delete newReviews[action.reviewId];
+            return { ...state, allReviews: newReviews };
         default:
             return state;
     };

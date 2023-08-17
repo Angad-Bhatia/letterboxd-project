@@ -4,13 +4,18 @@
 
 /* .details-movie-info-container {} */
 
-/* .poster-trailer-container {} */
+.poster-trailer-container {
+    display: flex;
+    flex-direction: column;
+}
 
 img.details-movie-poster {
     width: 80%;
 }
 
-/* .details-movie-stats {} */
+.details-movie-stats {
+    width: 100%;
+}
 
 /* a.details-trailer-link {} */
 
@@ -18,7 +23,9 @@ img.details-movie-poster {
 
 /* .details-movie-info-container {} */
 
-/* .details-movie-texts-container {} */
+.details-movie-texts-container {
+    display: flex;
+}
 
 .details-movie-info-header {
     display: flex;
@@ -32,7 +39,9 @@ h2.details-movie-title {
 
 /* .details-year-director {} */
 
-/* .details-middle-movie-info-container {} */
+.details-middle-movie-info-container {
+    width: 70%;
+}
 
 /* p.details-tagline-text {} */
 
@@ -78,5 +87,6 @@ td.details-td-text {
 
 /* .details-right-add-review-container {} */
 
+/* .create-review-button {} */
 
 /* .movie-details-reviews-container {} */

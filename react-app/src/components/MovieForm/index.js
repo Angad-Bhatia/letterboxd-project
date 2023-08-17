@@ -39,9 +39,9 @@ const MovieForm = ({ formType, movie }) => {
             let movieResponse;
             const cleanData = cleanMovieForm(formData);
 
-            if (formType === 'Add a Film') {
+            if (formType === 'Add Film') {
                 movieResponse = await dispatch(createMovieThunk(cleanData));
-            } else if (formType === 'Edit a Film') {
+            } else if (formType === 'Edit Film') {
                 movieResponse = await dispatch(updateMovieThunk(movie.id, cleanData));
             }
 

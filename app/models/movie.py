@@ -31,6 +31,14 @@ class Movie(db.Model):
     lists = db.relationship('List', secondary=catalogs, back_populates='movies')
 
     def to_dict(self):
+        reviews = [review.to_dict() for review in self.reviews]
+        num_likes = 0
+        total_stars = 0
+        for review in reviews:
+            total_stars += review['stars']
+            if review['like']:
+                num_likes += 1
+
         return {
             'id': self.id,
             'title': self.title,
@@ -49,7 +57,9 @@ class Movie(db.Model):
             'updatedAt': self.updatedAt,
             'num_lists': len(self.lists),
             'user': self.user.to_dict(),
-            'reviews': [review.to_dict() for review in self.reviews]
+            'reviews': reviews,
+            'likes': num_likes,
+            'star_rating': total_stars / len(reviews) if len(reviews) > 0 else 'New'
         }
 
     def to_dict_review(self):

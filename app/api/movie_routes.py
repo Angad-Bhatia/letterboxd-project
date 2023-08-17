@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Movie, Review, db
 from app.api.auth_routes import validation_errors_to_error_messages
-from app.forms import CreateMovieForm, EditMovieForm
+from app.forms import CreateMovieForm, EditMovieForm, CreateReviewForm, EditReviewForm
 
 movie_routes = Blueprint('movies', __name__)
 
@@ -119,6 +119,34 @@ def get_reviews_for_movie(id):
     reviews = Review.query.filter(Review.movie_id == id)
     reviews_dict = [review.to_dict() for review in reviews]
     return jsonify(reviews_dict)
+
+# Create a new REVIEW for a Movie
+@movie_routes.route('/<int:id>/new-review', methods=['POST'])
+@login_required
+def create_new_review(id):
+    """
+    Create a new Review and return the review in dictionary form
+    """
+    form = CreateReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+
+        new_review = Review (
+            user_id = current_user.id,
+            movie_id = id,
+            like = form.data['like'],
+            stars = form.data['stars'],
+            description = form.data['description'],
+        )
+
+        # print('in create', new_review.art)
+        db.session.add(new_review)
+        db.session.commit()
+
+        return jsonify(new_review.to_dict())
+
+    return jsonify({ 'errors': validation_errors_to_error_messages(form.errors) }), 401
 
 @movie_routes.route('/<int:id>')
 def get_movie_by_id(id):

@@ -108,6 +108,28 @@ export const normalizeUniqueErrors = (array) => {
     return errors;
 };
 
+// Review Validations
+export const reviewValidation = ({ stars, description }) => {
+    const errors = { flag: false };
+
+    if (stars >= 1 && stars <=5) {
+        errors.flag = false;
+    } else {
+        errors.flag = true;
+        errors.stars = 'Must leave a star rating'
+    }
+
+    if (!description) {
+        errors.flag = true;
+        errors.description = 'Must write a description'
+    } else if (description.length > 1000) {
+        errors.flag = true;
+        errors.description = "Description cannot exceed 1000 characters"
+    }
+
+    return errors;
+};
+
 
 /***********  Clean Forms  ***********/
 export const capitalizeSentence = (str) => {
@@ -117,7 +139,7 @@ export const capitalizeSentence = (str) => {
 
 export const cleanMovieForm = ({ title, art, tagline, summary, rating, year, genre, director, writer, cast, trailer_url }) => {
     const actorsArray = cast.split(', ').map(actor => capitalizeSentence(actor));
-    
+
     return {
         title: capitalizeSentence(title),
         art,
