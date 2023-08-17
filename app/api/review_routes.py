@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.models import Review, db
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.forms import EditReviewForm
+from datetime import datetime
 
 review_routes = Blueprint('reviews', __name__)
 
@@ -45,6 +46,7 @@ def edit_review(id):
         review.like = form.data['like']
         review.stars = form.data['stars']
         review.description = form.data['description']
+        review.updatedAt = datetime.now()
 
         db.session.commit()
 

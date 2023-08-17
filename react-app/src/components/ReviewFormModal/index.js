@@ -43,6 +43,11 @@ const ReviewFormModal = ({ movie, formType, review }) => {
         }
     };
 
+    const handleCancelClick = (e) => {
+        e.stopPropagation();
+        closeModal();
+    }
+
     useEffect(() => {
         console.log('soon to be data', stars, like, description);
     }, [like, stars])
@@ -111,7 +116,7 @@ const ReviewFormModal = ({ movie, formType, review }) => {
                     </button>
                     <button
                         id="review-cancel-button"
-                        // onClick={handleCancelClick}
+                        onClick={handleCancelClick}
                     >CANCEL
                     </button>
                 </div>

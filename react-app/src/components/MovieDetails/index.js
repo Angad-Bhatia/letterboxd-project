@@ -6,6 +6,8 @@ import { getMovieByIdThunk } from '../../store/movies';
 import { loadAllReviewsAction } from '../../store/reviews';
 import OpenModalButton from '../OpenModalButton';
 import CreateReviewModal from '../ReviewFormModal/CreateReview';
+import EditReviewModal from '../ReviewFormModal/EditReview';
+import DeleteConfirmationModal from '../DeleteConfirmationModal';
 
 import { dateToString } from '../../helpers';
 import './MovieDetails.css'
@@ -13,16 +15,16 @@ import './MovieDetails.css'
 const MovieDetails = () => {
     const dispatch = useDispatch();
     const { movieId } = useParams();
-    // const { closeModal } = useModal();
     const user = useSelector(state => state.session.user);
     const movie = useSelector(state => state.movies.singleMovie[movieId]);
     const reviewsObject = useSelector(state => state.reviews.allReviews);
     const reviews = Object.values(reviewsObject);
     const [userReview, setUserReview] = useState(false);
+    // console.log('userReview', userReview);
 
     useEffect(() => {
         dispatch(getMovieByIdThunk(movieId));
-    }, [dispatch, movieId, reviews.length]);
+    }, [dispatch, movieId, userReview?.updatedAt]);
 
     useEffect(() => {
         if (movie?.id) {
@@ -97,12 +99,27 @@ const MovieDetails = () => {
                             </table>
                         </div>
                         <div className='details-right-add-review-container'>
-                            {user?.id && !userReview &&
-                                <OpenModalButton
-                                    modalComponent={<CreateReviewModal movie={movie} className="review-form-actual-modal" />}
-                                    buttonText="Write Review"
-                                    className="write-review-button"
-                                />
+                            {user?.id &&
+                                <div className='details-review-buttons-container'>
+                                    {userReview?.id ? (
+                                        <div className='manage-review-buttons'>
+                                            <OpenModalButton
+                                            modalComponent={<EditReviewModal movie={movie} reviewId={userReview.id}/>}
+                                            buttonText="Edit Your Review"
+                                            />
+                                            <OpenModalButton
+                                                modalComponent={<DeleteConfirmationModal deleteId={userReview.id} deleteType="review"/>}
+                                                buttonText="Delete Your Review"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <OpenModalButton
+                                            modalComponent={<CreateReviewModal movie={movie} className="review-form-actual-modal" />}
+                                            buttonText="Write Review"
+                                            className="write-review-button"
+                                        />
+                                    )}
+                                </div>
                             }
                             <span>AVERAGE RATING: {movie.star_rating} STARS</span>
                         </div>
