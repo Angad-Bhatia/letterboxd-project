@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+// import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { createReviewThunk, updateReviewThunk } from '../../store/reviews';
@@ -7,7 +7,7 @@ import { reviewValidation } from '../../helpers';
 import './ReviewForm.css';
 
 const ReviewFormModal = ({ movie, formType, review }) => {
-    const history = useHistory();
+    // const history = useHistory();
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
@@ -47,10 +47,6 @@ const ReviewFormModal = ({ movie, formType, review }) => {
         e.stopPropagation();
         closeModal();
     }
-
-    useEffect(() => {
-        console.log('soon to be data', stars, like, description);
-    }, [like, stars])
 
     if (!movie?.id) {
         return <h1>Movie not Found</h1>

@@ -4,14 +4,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 1%;
 }
 
 img.home-main-image {
-    width: 100%;
+    width: 60%;
     height: 5%;
 }
 
-/* .site-description-signup-container {} */
+.site-description-signup-container {
+    padding: 2%;
+}
 
 /* .site-description-text-container {} */
 
@@ -21,7 +26,10 @@ h3.site-description-texts {
 
 /* button.get-started-button {} */
 
-/* p.site-tagline {} */
+p.site-tagline {
+    padding-top: 2.5%;
+    font-weight: 100;
+}
 
 .home-movies-container {
     display: flex;
@@ -41,7 +49,9 @@ h3.site-description-texts {
     /* border: 2px solid red */
 }
 
-/* .reviews-lists-explanation-container {} */
+.reviews-lists-explanation-container {
+    padding: 2%;
+}
 
 /* h4.write-share-compile-text {} */
 

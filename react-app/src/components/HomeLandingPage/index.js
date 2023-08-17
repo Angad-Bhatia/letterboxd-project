@@ -44,12 +44,6 @@ const HomeLandingPage = () => {
                         <Link to={`/movies/${movie.id}`}>
                             <img src={movie.art} className='home-movie-posters' alt='Movie Poster'></img>
                         </Link>
-                        {user?.id === movie.user_id &&
-                            <>
-                                <NavLink to={`/movies/${movie.id}/edit`}>Edit</NavLink>
-                                <button onClick={e => dispatch(deleteMovieThunk(movie.id))}>Delete</button>
-                            </>
-                        }
                     </div>
                 ))}
             </div>
@@ -77,8 +71,8 @@ const HomeLandingPage = () => {
                                         <h6 className='home-review-movie-year'>{review.movie.year}</h6>
                                     </span>
                                     <span className='home-review-user-info'>
-                                        <p className='home-review-username'>{review.user.username}</p>
-                                        <p className='home-review-num-stars'>{review.stars}</p>
+                                        <p className='home-review-username'>{review.user.username}: </p>
+                                        <p className='home-review-num-stars'> {review.stars} Stars</p>
                                     </span>
                                     <p className='home-review-description-text'>{review.description}</p>
                                 </div>

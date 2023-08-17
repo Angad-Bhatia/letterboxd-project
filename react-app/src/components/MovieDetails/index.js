@@ -39,13 +39,15 @@ const MovieDetails = () => {
     if (!movie?.id) {
         return <h1 className='not-found-conditional'>Film Not Found</h1>
     }
-    console.log(reviewsObject);
+
     return (
         <div className='movie-details-container'>
             <div className='poster-trailer-container'>
                 <img src={movie.art} className='details-movie-poster' alt='Movie Poster'></img>
                 <span className='details-movie-stats'>{movie.likes} Likes</span>
-                <a href={movie.trailer_url} className='details-trailer-link' target='_blank' rel="noreferrer">Trailer</a>
+                <a href={movie.trailer_url} className='details-trailer-link' target='_blank' rel="noreferrer">
+                    <i class="fa-brands fa-youtube"></i> Trailer
+                </a>
             </div>
             <div className='details-right-movie-container'>
                 <div className='details-movie-info-container'>
@@ -99,6 +101,8 @@ const MovieDetails = () => {
                             </table>
                         </div>
                         <div className='details-right-add-review-container'>
+                            <p>Average Rating: {movie.star_rating} STARS</p>
+                            {userReview?.stars && <p>Your Rating: {userReview.stars} STARS</p>}
                             {user?.id &&
                                 <div className='details-review-buttons-container'>
                                     {userReview?.id ? (
@@ -121,7 +125,6 @@ const MovieDetails = () => {
                                     )}
                                 </div>
                             }
-                            <span>AVERAGE RATING: {movie.star_rating} STARS</span>
                         </div>
                     </div>
                 </div>
@@ -129,7 +132,7 @@ const MovieDetails = () => {
                     <p className='details-reviews-index-header'>REVIEWS</p>
                     {reviews.map(review => (
                         <div className='details-review-items' key={review.id}>
-                            <p className='details-review-username-stars'>Review by {review.user.username} {review.stars}</p>
+                            <p className='details-review-username-stars'>Review by {review.user.username} : {review.stars} Stars</p>
                             <p className='details-review-text'>{review.description}</p>
                             <p>{dateToString(review.updatedAt)}</p>
                         </div>

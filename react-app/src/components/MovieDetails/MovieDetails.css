@@ -1,5 +1,6 @@
 .movie-details-container {
     display: flex;
+    padding: 3%;
 }
 
 /* .details-movie-info-container {} */
@@ -30,6 +31,9 @@ img.details-movie-poster {
 .details-movie-info-header {
     display: flex;
     flex-direction: row;
+    align-items: flex-end;
+    gap: 1.5%;
+    padding-bottom: 2%;
     /* border: red 2px solid; */
 }
 
@@ -43,15 +47,24 @@ h2.details-movie-title {
     width: 70%;
 }
 
-/* p.details-tagline-text {} */
+p.details-tagline-text {
+    color: #9ab;
+    padding-bottom: 2%;
+    font-weight: 100;
+}
 
-/* p.details-summary-test {} */
+p.details-summary-test {
+    color: #9ab;
+    padding-bottom: 2.5%;
+}
 
-/* p.cast-crew-header {} */
+p.cast-crew-header {
+    color: #00e054;
+    padding-bottom: 2%;
+}
 
 table.details-crew-table {
-    /* margin: 0%;
-    padding: 0%; */
+    padding-bottom: 2%;
 }
 
 p.details-key-p {
@@ -59,8 +72,9 @@ p.details-key-p {
 }
 
 .details-tr {
-    /* margin: 0%;
-    padding: 0%; */
+    /* padding-bottom: 2%; */
+    /* border: 2px solid red;
+    color: orange; */
     height: min-content;
 }
 
@@ -81,12 +95,34 @@ p.details-key-p {
     border-bottom: gray 2px dotted;
 }
 
-td.details-td-text {
-    /* padding-left: 9%; */
-}
+/* td.details-td-text {} */
 
-/* .details-right-add-review-container {} */
+.details-right-add-review-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid gray;
+}
 
 /* .create-review-button {} */
 
 /* .movie-details-reviews-container {} */
+
+p.details-reviews-index-header {
+    border-bottom: 1px solid #9ab;
+}
+
+.details-review-items {
+    margin-top: 1.75%;
+    padding: 1%;
+    width: 100%;
+    border: .5px solid #9ab;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+p.details-review-text {
+    padding-left: 4%;
+    font-weight: 200;
+}

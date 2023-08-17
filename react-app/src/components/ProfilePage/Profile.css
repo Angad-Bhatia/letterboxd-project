@@ -1,4 +1,30 @@
+.profile-page-container {
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 3%;
+    width: 100%;
+}
+
+.profile-header-container {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .profile-movies-container {
     display: flex;
     gap: 1%;
+}
+
+.profile-recent-reviews {
+    margin-top: 5%;
+}
+
+ul.profile-reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3%;
 }
