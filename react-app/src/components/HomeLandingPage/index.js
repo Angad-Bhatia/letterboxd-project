@@ -59,7 +59,7 @@ const HomeLandingPage = () => {
                 <div className='home-reviews-container'>
                     <div className='home-reviews-header-container'>
                         <p className='home-recent-reviews'>RECENT REVIEWS</p>
-                        <NavLink to='/reviews'>More</NavLink>
+                        {/* <NavLink to='/reviews'>More</NavLink> */}
                     </div>
                     <ul className='home-reviews-list'>
                         {reviews.slice(0,6).map(review => (

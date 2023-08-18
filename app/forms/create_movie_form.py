@@ -8,7 +8,7 @@ def title_exists(form, field):
     title = field.data
     movie = Movie.query.filter(Movie.title == title).first()
     if movie:
-        raise ValidationError('Film with this title has already been created')
+        raise ValidationError('Film with this title has already been created. If your film shares the title as another film, but is a different film, please include the year in the title')
 
 def art_exists(form, field):
     # Checking if art exists

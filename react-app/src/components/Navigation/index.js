@@ -18,7 +18,7 @@ function Navigation({ isLoaded }){
 			<div>
 				<NavLink exact to="/" className='route-home'>
 					{/* <img src='/public/favicon.ico'></img> */}
-					<i class="fa-solid fa-clapperboard"></i>
+					<i className="fa-solid fa-clapperboard"></i>
 					<h2>SceneIt</h2>
 				</NavLink>
 			</div>
@@ -30,10 +30,12 @@ function Navigation({ isLoaded }){
 				)}
 				{/* <li><NavLink to='/movies'>FILMS</NavLink></li>
 				<li><NavLink to='/reviews'>REVIEWS</NavLink></li> */}
-				<li><NavLink to='/profile'>MANAGE</NavLink></li>
-				<li className='new-movie-li'>
-					<button onClick={plusMovie} className='new-movie-button'>+ Movie</button>
-				</li>
+				{sessionUser?.id && <>
+					<li><NavLink to='/profile'>MANAGE</NavLink></li>
+					<li className='new-movie-li'>
+						<button onClick={plusMovie} className='new-movie-button'>+ Movie</button>
+					</li>
+				</>}
 			</ul>
 		</div>
 	);

@@ -54,7 +54,12 @@ const ProfilePage = () => {
                             </Link>
                             <div className='profile-movies-manage-buttons'>
                                 <NavLink to={`/movies/${movie.id}/edit`}>Edit</NavLink>
-                                <button onClick={e => dispatch(deleteMovieThunk(movie.id))}>Delete</button>
+                                <OpenModalButton
+                                    modalComponent={<DeleteConfirmationModal deleteId={movie.id} deleteType={`film:
+${movie.title}`}/>}
+                                    buttonText={'DELETE'}
+                                />
+                                {/* <button onClick={e => dispatch(deleteMovieThunk(movie.id))}>Delete</button> */}
                             </div>
                         </div>
                     ))}

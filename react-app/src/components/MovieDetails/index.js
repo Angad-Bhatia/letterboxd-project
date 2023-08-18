@@ -46,7 +46,7 @@ const MovieDetails = () => {
                 <img src={movie.art} className='details-movie-poster' alt='Movie Poster'></img>
                 <span className='details-movie-stats'>{movie.likes} Likes</span>
                 <a href={movie.trailer_url} className='details-trailer-link' target='_blank' rel="noreferrer">
-                    <i class="fa-brands fa-youtube"></i> Trailer
+                    <i className="fa-brands fa-youtube"></i> Trailer
                 </a>
             </div>
             <div className='details-right-movie-container'>
