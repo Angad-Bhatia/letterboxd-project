@@ -33,7 +33,7 @@ function Navigation({ isLoaded }){
 				{sessionUser?.id && <>
 					<li><NavLink to='/profile'>MANAGE</NavLink></li>
 					<li className='new-movie-li'>
-						<button onClick={plusMovie} className='new-movie-button'>+ Movie</button>
+						<button onClick={plusMovie} className='new-movie-button'>+ Film</button>
 					</li>
 				</>}
 			</ul>

@@ -15,6 +15,7 @@ const ReviewFormModal = ({ movie, formType, review }) => {
     const [stars, setStars] = useState(review?.stars ? review.stars : 0);
     const [description, setDescription] = useState(review?.description);
     const [errors, setErrors] = useState({ flag: false });
+    const [fill, setFill] = useState();
 
     const starsArray = [1, 2, 3, 4, 5];
 
@@ -54,6 +55,7 @@ const ReviewFormModal = ({ movie, formType, review }) => {
 
     return (
         <div className='review-form-modal-container'>
+            
             {/* <div className='review-modal-poster-container'> */}
             <img src={movie.art} alt='movie-poster' className='review-form-poster'></img>
             {/* </div> */}

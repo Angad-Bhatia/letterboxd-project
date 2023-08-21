@@ -237,6 +237,7 @@ const MovieForm = ({ formType, movie }) => {
                     <button
                         id="movie-submit-button"
                         type="submit"
+                        // className='new-movie-button'
                     >{formType}
                     </button>
                     {/* <button

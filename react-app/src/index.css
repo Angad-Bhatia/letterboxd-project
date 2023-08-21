@@ -2,7 +2,7 @@
 
 * {
     font-family: 'Lato', sans-serif;
-    padding: 0%;
+    /* padding: 0%; */
     margin: 0%;
 }
 
@@ -16,6 +16,7 @@ html {
 
 button {
     cursor: pointer;
+    /* box-shadow: 50px; */
 }
 
 .errors {

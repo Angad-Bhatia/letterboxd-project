@@ -21,6 +21,9 @@ ul.navlinks-container {
   position: absolute;
   background-color: #9ab;
   box-shadow: 10px 5px 5px black;
+  padding-left: 1%;
+  padding-right: 1%;
+  text-align: center;
 }
 
 .profile-dropdown > li {
@@ -38,6 +41,13 @@ ul.navlinks-container {
   box-shadow: none;
 }
 
+button.logout-button {
+  border: none;
+  background-color: #9ab;
+  color: #d8e0e8;
+  padding: 0
+}
+
 li.new-movie-li {
   width: 30%;
 }
@@ -49,4 +59,9 @@ button.new-movie-button {
   box-shadow: none;
   padding: 5% 10%;
   border-radius: 5px;
+}
+.nav-menu-auth-buttons-container {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
 }
