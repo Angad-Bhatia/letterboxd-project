@@ -1,4 +1,32 @@
 h1.delete-confirmation-text {
     color: #9ab;
     text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.delete-modal-container {
+    background-color: #456;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.delete-modal-button-container {
+    padding-bottom: 5%;
+    display: flex;
+    gap: 10%;
+    justify-content: space-between;
+}
+
+.movie-delete-button {
+    background-color: rgb(61, 105, 150);
+    color: #bcd;
+    box-shadow: none;
+    border: .5px black solid;
+    padding: 5px;
+    height: fit-content;
+    width: fit-content;
 }

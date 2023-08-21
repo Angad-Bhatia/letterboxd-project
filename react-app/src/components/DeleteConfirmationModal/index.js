@@ -28,8 +28,8 @@ const DeleteConfirmationModal = ({ deleteId, deleteType }) => {
         <div className="delete-modal-container">
             <pre><h1 className="delete-confirmation-text">Are you sure you want to delete this {deleteType}</h1></pre>
             <div className="delete-modal-button-container">
-                <button onClick={deleteClick}className="yes-delete-button">Yes (Confirm Delete)</button>
-                <button onClick={(e) => closeModal()} className="cancel-delete-button">No (Cancel)</button>
+                <button onClick={deleteClick}className="movie-delete-button">Yes (Confirm Delete)</button>
+                <button onClick={(e) => closeModal()} className="movie-delete-button">No (Cancel)</button>
             </div>
         </div>
     )

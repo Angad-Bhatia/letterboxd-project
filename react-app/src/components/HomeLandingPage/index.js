@@ -5,6 +5,7 @@ import { getAllMoviesThunk } from '../../store/movies';
 import { getAllReviewsThunk } from '../../store/reviews';
 import OpenModalButton from '../OpenModalButton';
 import SignupFormModal from '../SignupFormModal';
+import DisplayStars from '../DisplayStars';
 import './HomeLanding.css';
 
 
@@ -62,17 +63,17 @@ const HomeLandingPage = () => {
                         {/* <NavLink to='/reviews'>More</NavLink> */}
                     </div>
                     <ul className='home-reviews-list'>
-                        {reviews.slice(0,6).map(review => (
+                        {reviews.map(review => (
                             <li className='home-reviews-li' key={review.id}>
                                 <img className='home-review-movie-poster' src={review.movie.art} alt='Movie Poster'></img>
                                 <div className='home-review-info-container'>
                                     <span className='home-review-movie-info'>
-                                        <h3 className='home-review-movie-title'>{review.movie.title}</h3>
-                                        <h6 className='home-review-movie-year'>{review.movie.year}</h6>
+                                        <h3 className='home-review-movie-title'>{review.movie.title} ({review.movie.year})
+                                        </h3>
                                     </span>
                                     <span className='home-review-user-info'>
-                                        <p className='home-review-username'>{review.user.username}: </p>
-                                        <p className='home-review-num-stars'> {review.stars} Stars</p>
+                                        <p className='home-review-username'>{review.user.username} &nbsp; </p>
+                                        <span className='home-review-num-stars'><DisplayStars numStars={review.stars}/></span>
                                     </span>
                                     <p className='home-review-description-text'>{review.description}</p>
                                 </div>

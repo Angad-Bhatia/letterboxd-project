@@ -4,9 +4,41 @@
     background-color: #2c3440;
     display: flex;
     flex-direction: column;
+    gap: 7%;
     align-items: center;
     justify-content: center;
     width: 500px;
     height: 600px;
     padding: 5px;
+}
+
+form.login-form {
+    display: flex;
+    flex-direction: column;
+    /* gap: 5%; */
+}
+
+form.login-form > label {
+    /* margin-top: 30%; */
+    padding-top: 10%;
+}
+
+button.login-button {
+    margin-top: 8%;
+    width: 103%;
+    background-color: rgb(0, 176, 32);
+    border: none;
+    box-shadow: none;
+    color: white;
+    padding: 3%;
+    border-radius: 20px;
+}
+
+button.demo-button {
+    background-color: rgb(71, 175, 239);
+    border: none;
+    box-shadow: none;
+    color: white;
+    padding: 1.5%;
+    border-radius: 10px;
 }

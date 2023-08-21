@@ -28,3 +28,13 @@ ul.profile-reviews-list {
     flex-direction: column;
     gap: 3%;
 }
+
+.profile-review-info-container > p {
+    padding-top: 5%;
+}
+
+.profile-movies-manage-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

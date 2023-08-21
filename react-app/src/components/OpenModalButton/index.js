@@ -21,7 +21,7 @@ function OpenModalButton({
       return 'create-review-button manage-review-button';
     } else if (buttonText === 'Edit Review') {
       return 'edit-review-button manage-review-button'
-    } else if (buttonText === 'Delete Your Review') {
+    } else if (buttonText === 'Delete Review' || buttonText === 'DELETE') {
       return 'delete-review-button manage-review-button'
     } else if (buttonText === 'Log In' || buttonText === 'Sign Up') {
       return 'logout-button'

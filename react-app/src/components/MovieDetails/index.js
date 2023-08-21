@@ -120,7 +120,7 @@ const MovieDetails = () => {
                                             />
                                             <OpenModalButton
                                                 modalComponent={<DeleteConfirmationModal deleteId={userReview.id} deleteType="review"/>}
-                                                buttonText="Delete Your Review"
+                                                buttonText="Delete Review"
                                                 />
                                         </div>
                                     ) : (

@@ -6,6 +6,7 @@ import { getCurrentUserAllReviewsThunk } from '../../store/reviews';
 import OpenModalButton from '../OpenModalButton';
 import EditReviewModal from '../ReviewFormModal/EditReview';
 import DeleteConfirmationModal from '../DeleteConfirmationModal';
+import DisplayStars from '../DisplayStars';
 import { dateToString } from '../../helpers';
 import './Profile.css';
 
@@ -77,19 +78,19 @@ ${movie.title}`}/>}
                                     <h6 className='profile-review-movie-year'>{review.movie.year}</h6>
                                 </span>
                                 <span className='profile-review-user-info'>
-                                    <p className='profile-review-num-stars'>{review.stars} Stars</p>
+                                    <p className='profile-review-num-stars'><DisplayStars numStars={review.stars}/></p>
                                     <p className='profile-review-date'>Watched {dateToString(review.updatedAt)}</p>
                                 </span>
-                                <p className='profile-review-description-text'>{review.description}</p>
-                                <p className='profile-review-isliked'>{review.like && 'Liked!'}</p>
+                                <p className='profile-review-description-text'>&nbsp;&nbsp;&nbsp;{review.description}</p>
+                                <p className='profile-review-isliked'>{review.like && <i className='fa-solid fa-heart'></i>}</p>
                                 <div className='profile-reviews-buttons-container'>
                                     <OpenModalButton
                                         modalComponent={<EditReviewModal movie={review.movie} reviewId={review.id}/>}
-                                        buttonText="Edit Your Review"
+                                        buttonText="Edit Review"
                                     />
                                     <OpenModalButton
                                         modalComponent={<DeleteConfirmationModal deleteId={review.id} deleteType="review"/>}
-                                        buttonText="Delete Your Review"
+                                        buttonText="Delete Review"
                                     />
                                 </div>
                             </div>
