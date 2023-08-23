@@ -212,7 +212,7 @@ const MovieForm = ({ formType, movie }) => {
                     <input
                         id="movie-cast-input"
                         type="text"
-                        placeholder="Cast"
+                        placeholder="Matt Damon, Tom Hanks,..."
                         onChange={(e) => setCast(e.target.value)}
                         value={cast}
                         required

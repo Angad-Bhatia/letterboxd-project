@@ -22,6 +22,11 @@ const ProfilePage = () => {
         dispatch(getCurrentUserAllMoviesThunk());
         dispatch(getCurrentUserAllReviewsThunk());
     }, [dispatch, user]);
+
+    useEffect(() => {
+        dispatch(getCurrentUserAllReviewsThunk());
+    }, [dispatch, movies]);
+
     if (!user?.id) {
         return <h1>You have to be logged in to see this</h1>
     }
