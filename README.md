@@ -1,8 +1,8 @@
-# Remotebnb
+# Scene It
       
-Remotebnb is a soft clone of Airbnb. With recent events, many people have found themselves working remotely. Remotebnb wants to provide a service where remote workers can find cool new places to work. 
+Scene It is a soft clone of Letterboxd. Films, and our thoughts on them, were meant to be shared. Scene It provides a way for users to discover new films and their friends' opinions on them, while also sharing their own.
 
-Check out [Remotebnb](https://remotebnb.herokuapp.com/) (Moving from Heroku soon)
+Check out [Scene It](https://scene-it.onrender.com/) (Moving from Render soon)
 
 ## Index
 
