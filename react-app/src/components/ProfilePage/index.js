@@ -18,14 +18,15 @@ const ProfilePage = () => {
     const movies = Object.values(moviesObject).sort((movie1, movie2) => movie2.id - movie1.id);
     const reviews = Object.values(reviewsObject).sort((review1, review2) => review2.id - review1.id);
 
+    // Example
     useEffect(() => {
         dispatch(getCurrentUserAllMoviesThunk());
         dispatch(getCurrentUserAllReviewsThunk());
     }, [dispatch, user]);
 
-    useEffect(() => {
-        dispatch(getCurrentUserAllReviewsThunk());
-    }, [dispatch, movies]);
+    // useEffect(() => {
+    //     dispatch(getCurrentUserAllReviewsThunk());
+    // }, [dispatch, movies]);
 
     if (!user?.id) {
         return <h1>You have to be logged in to see this</h1>

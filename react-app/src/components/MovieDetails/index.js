@@ -10,7 +10,7 @@ import DeleteConfirmationModal from '../DeleteConfirmationModal';
 import DisplayStars from '../DisplayStars';
 import { dateToString } from '../../helpers';
 import './MovieDetails.css'
-
+// Example 2
 const MovieDetails = () => {
     const dispatch = useDispatch();
     const { movieId } = useParams();

@@ -26,6 +26,7 @@ class Movie(db.Model):
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
+# EXAMPLE 
     user = db.relationship('User', back_populates='movies')
     reviews = db.relationship('Review', back_populates='movie', cascade="all, delete")
     lists = db.relationship('List', secondary=catalogs, back_populates='movies')
