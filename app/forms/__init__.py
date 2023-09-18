@@ -4,3 +4,4 @@ from .create_movie_form import CreateMovieForm
 from .edit_movie_form import EditMovieForm
 from .create_review_form import CreateReviewForm
 from .edit_review_form import EditReviewForm
+from .create_list_form import CreateListForm
